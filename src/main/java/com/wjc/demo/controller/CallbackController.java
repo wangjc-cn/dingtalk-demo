@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 /**
  * @ProjectName: demo
@@ -40,7 +39,7 @@ public class CallbackController {
     @Autowired
     private DingTalkProps props;
 
-    private Map<String, Function<CallbackEventHandle,String>> handleMap = new HashMap<>();
+    private Map<String, CallbackEventHandle> handleMap = new HashMap<>();
 
     @PostMapping("callback")
     public Map<String, String> checkUrl(@RequestParam("EventType") String eventType, Map<String, String> map){
@@ -55,9 +54,14 @@ public class CallbackController {
                     props.getCorpId());
             // 增加回调事件的处理
             handleMap.put("check_url",(x)-> checkUrl.callbackHandle(map));
+            handleMap.put("check_url3",(x)-> "success");
             userEventHandle(map);
             // 回调事件处理
-            String result = handleMap.get(eventType).apply(null);
+            CallbackEventHandle handel = handleMap.get(eventType);
+            if(handel == null){
+                throw new Exception("此eventType:" + eventType + " 未注册事件处理");
+            }
+            String result = handel.callbackHandle(map);
             // 返回加密后信息
             return dingTalkEncryptor.getEncryptedMap(result,time,"123456");
         } catch (DingTalkEncryptException e) {

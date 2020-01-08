@@ -1,5 +1,6 @@
 package com.wjc.demo.service;
 
+import com.dingtalk.api.request.OapiUserCreateRequest;
 import com.dingtalk.api.response.OapiUserCreateResponse;
 import com.taobao.api.ApiException;
 
@@ -20,10 +21,8 @@ public interface DingTalkUserApi {
      * 创建用户
      * 请求方式：POST（HTTPS）
      * 请求地址：https://oapi.dingtalk.com/user/create?access_token=ACCESS_TOKEN
-     * @param userId
-     * @param mobile
-     * @param name
+     * @param request
      * @return
      */
-    OapiUserCreateResponse userAdd(String userId, String mobile, String name) throws ApiException;
+    OapiUserCreateResponse userAdd(OapiUserCreateRequest request) throws ApiException;
 }

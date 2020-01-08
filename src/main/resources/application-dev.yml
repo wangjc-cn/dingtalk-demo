@@ -84,9 +84,9 @@ logging:
 #钉钉开放平台配置
 #钉钉-软件06461
 dingtalk:
-  appKey: dingoqq0rxovy7m5kfmj
-  appSecret: WOmY4g-PcOBn3eyLDD-caXEP__Xodfv9d_AvYyllgyvgTe5YpREGSC-yZHwaM3Ud
-  corpId: ding0a991ff6222ce48eee0f45d8e4f7c288
+  appKey: ding9rtgnlcmluvpp3bl
+  appSecret: MVBrdWm-izi9D67JNImjwCyE_X4yXgdy_gKGHZ8TwDfKVwZPBvpwrMj7dMihMuQj
+  corpId: ding825df812c96c5ed3
   callBackUrl: http://10.64.3.28:9090/demo/callback
   aesKey: xxxxxxxxlvdhntotr3x9qhlbytb18zyz5zxxxxxxxxx
   token: 123456

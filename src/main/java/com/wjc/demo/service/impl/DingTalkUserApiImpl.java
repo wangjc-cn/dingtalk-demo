@@ -40,13 +40,9 @@ public class DingTalkUserApiImpl implements DingTalkUserApi {
     private DingTalkProps props;
 
     @Override
-    public OapiUserCreateResponse userAdd(String userId, String mobile, String name) throws ApiException {
+    public OapiUserCreateResponse userAdd(OapiUserCreateRequest request) throws ApiException {
         OapiGettokenResponse accessTokenRes = defaultApi.getAccessToken();
         dingTalkClient.resetServerUrl(ApiConstant.USER_ADD + accessTokenRes.getAccessToken());
-        OapiUserCreateRequest request = new OapiUserCreateRequest();
-        request.setUserid(userId);
-        request.setMobile(mobile);
-        request.setName(name);
 
         // 需要用字符串， "[100,200]" 这种格式
         List<Long> departments = new ArrayList<Long>();

@@ -26,6 +26,8 @@ public class Constant {
     public static final int REDIS_APP_TIME_CNT = 50;
     public static final String REDIS_INTER_LEVEL = "1";
     public static final String CALLBACK_SUCCESS = "success";
+    public static final String HTTP_GET = "GET";
+    public static final String HTTP_POST = "POST";
 
     public static final String DING_TOKEN = "bslzwic02emcxcv6t9yome14io86tf5pkvlpkd2wk2a";
     public static final String DING_DATA_SECRET = "bslzwic02emcxcv6t9yome14io86tf5pkvlpkd2wk2a";

@@ -18,8 +18,13 @@ import com.wjc.demo.entity.DingTalkProps;
  */
 public interface DingTalkDefaultApi {
     /**
-     * 获取access_token
-     *
+     * @method  getAccessToken
+     * @description 获取钉钉开放平台access_token
+     *              [注意]正常情况下access_token有效期为7200秒，
+     *              有效期内重复获取返回相同结果，并自动续期。
+     * @date: 2020/1/8 0008 14:50
+     * @author: wangjc
+     * @param :
      * @return
      */
     OapiGettokenResponse getAccessToken() throws ApiException;

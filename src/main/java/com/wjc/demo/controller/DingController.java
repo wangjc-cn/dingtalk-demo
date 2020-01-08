@@ -3,6 +3,7 @@ package com.wjc.demo.controller;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiGettokenRequest;
+import com.dingtalk.api.request.OapiUserCreateRequest;
 import com.dingtalk.api.request.OapiUserGetRequest;
 import com.dingtalk.api.response.OapiGettokenResponse;
 import com.dingtalk.api.response.OapiUserCreateResponse;
@@ -72,8 +73,8 @@ public class DingController {
     }
 
     @PostMapping("userAdd")
-    public OapiUserCreateResponse userAdd(String userid,String mobile, String name) throws ApiException {
-        OapiUserCreateResponse oapiUserCreateResponse = userApi.userAdd(userid, mobile, name);
+    public OapiUserCreateResponse userAdd(OapiUserCreateRequest request) throws ApiException {
+        OapiUserCreateResponse oapiUserCreateResponse = userApi.userAdd(request);
         return oapiUserCreateResponse;
     }
 

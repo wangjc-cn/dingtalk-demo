@@ -65,6 +65,14 @@ public class DingTalkCallbackApiImpl implements DingTalkCallbackApi {
         return null;
     }
 
+    /**
+     * @method  getFailedCallBack
+     * @description 描述一下方法的作用
+     * @date: 2020/1/8 0008 14:32
+     * @author: wangjc
+     * @param : []
+     * @return
+     */
     @Override
     public OapiCallBackGetCallBackFailedResultResponse getFailedCallBack() throws ApiException {
         OapiGettokenResponse accessTokenRes = defaultApi.getAccessToken();

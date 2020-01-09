@@ -11,22 +11,21 @@ import java.util.Map;
 /**
  * @ProjectName: demo
  * @Package: com.wjc.demo.event.handle
- * @ClassName: UserAddOrgEvent
- * @Description: user_add_org 的事件处理
+ * @ClassName: UserModifyOrgEvenHandle
+ * @Description: java类作用描述
  * @Author: wangjc
- * @CreateDate: 2020/1/7 0007 13:22
+ * @CreateDate: 2020/1/9 0009 11:13
  * @UpdateUser: 更新者
- * @UpdateDate: 2020/1/7 0007 13:22
+ * @UpdateDate: 2020/1/9 0009 11:13
  * @UpdateRemark: 更新内容
  * @Version: 1.0
  */
-@Component("userAddOrg")
+@Component("userModifyOrg")
 @Slf4j
-public class UserAddOrgEventHandle implements CallbackEventHandle {
-
+public class UserModifyOrgEvenHandle implements CallbackEventHandle {
     @Override
     public String callbackHandle(Map<String, String> map) {
-        log.info("用户添加 回调成功: {}" , JSONObject.toJSONString(map));
+        log.info("用户修改 回调成功: {}" , JSONObject.toJSONString(map));
         return Constant.CALLBACK_SUCCESS;
     }
 }

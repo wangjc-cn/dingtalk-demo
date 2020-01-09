@@ -1,11 +1,12 @@
 package com.wjc.demo.service.impl;
 
 import com.dingtalk.api.DefaultDingTalkClient;
-import com.dingtalk.api.request.OapiCallBackGetCallBackFailedResultRequest;
-import com.dingtalk.api.request.OapiCallBackRegisterCallBackRequest;
+import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.taobao.api.ApiException;
 import com.wjc.demo.common.constant.ApiConstant;
+import com.wjc.demo.common.constant.Constant;
+import com.wjc.demo.common.utils.EncodeUtil;
 import com.wjc.demo.entity.DingTalkProps;
 import com.wjc.demo.service.DingTalkCallbackApi;
 import com.wjc.demo.service.DingTalkDefaultApi;
@@ -41,28 +42,45 @@ public class DingTalkCallbackApiImpl implements DingTalkCallbackApi {
     @Override
     public OapiCallBackRegisterCallBackResponse callBackRgst(List<String> callBackTag) throws ApiException {
         OapiGettokenResponse accessTokenRes = defaultApi.getAccessToken();
-        client.resetServerUrl(ApiConstant.CALL_BACK_FAIL_LIST + accessTokenRes.getAccessToken());
+        client.resetServerUrl(ApiConstant.CALL_BACK_RGST + accessTokenRes.getAccessToken());
         OapiCallBackRegisterCallBackRequest request = new OapiCallBackRegisterCallBackRequest();
         request.setUrl(props.getCallBackUrl());
         request.setAesKey(props.getAesKey());
         request.setToken(props.getToken());
         request.setCallBackTag(callBackTag);
+        request.setHttpMethod(Constant.HTTP_POST);
         return client.execute(request);
     }
 
     @Override
-    public OapiCallBackUpdateCallBackResponse callBackUpd(List<String> callBackTag) {
-        return null;
+    public OapiCallBackUpdateCallBackResponse callBackUpd(List<String> callBackTag) throws ApiException {
+        OapiGettokenResponse acToken = defaultApi.getAccessToken();
+        client.resetServerUrl(ApiConstant.CALL_BACK_UPD + acToken.getAccessToken());
+        OapiCallBackUpdateCallBackRequest request = new OapiCallBackUpdateCallBackRequest();
+        request.setUrl(props.getCallBackUrl());
+        request.setAesKey(props.getAesKey());
+        request.setToken(props.getToken());
+        request.setCallBackTag(callBackTag);
+        OapiCallBackUpdateCallBackResponse response = client.execute(request);
+        return client.execute(request);
     }
 
     @Override
-    public OapiCallBackDeleteCallBackResponse callBackDel() {
-        return null;
+    public OapiCallBackDeleteCallBackResponse callBackDel() throws ApiException {
+        OapiGettokenResponse acToken = defaultApi.getAccessToken();
+        client.resetServerUrl(ApiConstant.CALL_BACK_DEL + acToken.getAccessToken());
+        OapiCallBackDeleteCallBackRequest request = new OapiCallBackDeleteCallBackRequest();
+        request.setHttpMethod(Constant.HTTP_GET);
+        return client.execute(request);
     }
 
     @Override
-    public OapiCallBackGetCallBackResponse getCallBack() {
-        return null;
+    public OapiCallBackGetCallBackResponse getCallBack() throws ApiException {
+        OapiGettokenResponse accessTokenRes = defaultApi.getAccessToken();
+        client.resetServerUrl(ApiConstant.CALL_BACK_INFO + accessTokenRes.getAccessToken());
+        OapiCallBackGetCallBackRequest request = new OapiCallBackGetCallBackRequest();
+        request.setHttpMethod(Constant.HTTP_GET);
+        return client.execute(request);
     }
 
     /**
@@ -78,7 +96,7 @@ public class DingTalkCallbackApiImpl implements DingTalkCallbackApi {
         OapiGettokenResponse accessTokenRes = defaultApi.getAccessToken();
         client.resetServerUrl(ApiConstant.CALL_BACK_FAIL_LIST + accessTokenRes.getAccessToken());
         OapiCallBackGetCallBackFailedResultRequest request = new OapiCallBackGetCallBackFailedResultRequest();
-        request.setHttpMethod("GET");
+        request.setHttpMethod(Constant.HTTP_GET);
         return client.execute(request);
     }
 }

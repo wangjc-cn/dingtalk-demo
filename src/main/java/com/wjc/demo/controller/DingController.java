@@ -1,5 +1,6 @@
 package com.wjc.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiGettokenRequest;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.taobao.api.ApiException;
 import com.wjc.demo.entity.DingTalkProps;
 import com.wjc.demo.service.DingTalkUserApi;
+import javafx.scene.DepthTest;
 import jdk.nashorn.internal.ir.debug.JSONWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.taobao.api.internal.toplink.endpoint.MessageType.ValueFormat.Date;
@@ -74,6 +78,10 @@ public class DingController {
 
     @PostMapping("userAdd")
     public OapiUserCreateResponse userAdd(OapiUserCreateRequest request) throws ApiException {
+        List<Long> depts = new ArrayList<Long>();
+        depts.add(112265693L);
+        depts.add(147651975L);
+        request.setDepartment(JSONObject.toJSONString(depts));
         OapiUserCreateResponse oapiUserCreateResponse = userApi.userAdd(request);
         return oapiUserCreateResponse;
     }

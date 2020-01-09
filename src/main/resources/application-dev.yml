@@ -87,6 +87,7 @@ dingtalk:
   appKey: ding9rtgnlcmluvpp3bl
   appSecret: MVBrdWm-izi9D67JNImjwCyE_X4yXgdy_gKGHZ8TwDfKVwZPBvpwrMj7dMihMuQj
   corpId: ding825df812c96c5ed3
-  callBackUrl: http://10.64.3.28:9090/demo/callback
+  callBackUrl: http://6498f549.cpolar.io/demo/callback/handle
+  #callBackUrl: http://www.baidu.com
   aesKey: xxxxxxxxlvdhntotr3x9qhlbytb18zyz5zxxxxxxxxx
   token: 123456
